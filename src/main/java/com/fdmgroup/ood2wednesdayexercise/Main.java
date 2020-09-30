@@ -14,14 +14,16 @@ public class Main {
 	
 	static Scanner sc = new Scanner(System.in);
 	static Logger gLogger = Logger.getLogger("generalLogger");
+	static User user = new User();
+	
 	public static void main(String[] args) {
-		User user = new User();
-		prompt(user);
+		prompt();
 		writeToFile(user);
 		readFromFile("Users.txt");
 	}
-	private static void readFromFile(String FileName) {
-		try (BufferedReader br = new BufferedReader(new FileReader("Users.txt"))) {
+	
+	private static void readFromFile(String fileName) {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				System.out.println(line);
@@ -41,7 +43,8 @@ public class Main {
 			gLogger.trace("IOException could not write to file: " + e);
 		}
 	}
-	private static void prompt(User user) {
+	
+	private static void prompt() {
 		System.out.println("Enter in your name: ");
 		String name = sc.nextLine();
 		System.out.println("Enter in your address: ");
